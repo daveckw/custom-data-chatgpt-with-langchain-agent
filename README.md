@@ -15,13 +15,12 @@ Ensure you have the following installed:
 
 1. Clone the repository:
 
-`bash
-git clone https://github.com/your-username/your-repo.git
+`clone https://github.com/your-username/your-repo.git
 `
 
 2. Install the required libraries:
 
-`bash
+`
 pip install openai langchain llama_index
 `
 
@@ -35,7 +34,7 @@ OPENAI_API_KEY=your_api_key_here
 
 1. Run the script:
 
-`bash
+`
 python your_script_name.py
 `
 
