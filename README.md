@@ -26,7 +26,7 @@ pip install openai langchain llama_index
 
 3. Add your OpenAI API key to a `.env` file in the working directory:
 
-`dotenv
+`
 OPENAI_API_KEY=your_api_key_here
 `
 
