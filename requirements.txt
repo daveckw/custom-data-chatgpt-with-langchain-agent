@@ -1,4 +1,4 @@
-langchain
-llama_index
+langchain==0.0.129
+llama_index==0.5.6
 gradio
 gunicorn
