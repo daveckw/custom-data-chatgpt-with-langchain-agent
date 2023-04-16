@@ -17,7 +17,6 @@ from llama_index import (
     ServiceContext,
 )
 from llama_index.optimization.optimizer import SentenceEmbeddingOptimizer
-import gradio as gr
 
 logging.basicConfig(stream=sys.stdout, level=logging.INFO)
 logging.getLogger().addHandler(logging.StreamHandler(stream=sys.stdout))
@@ -76,15 +75,9 @@ agent_chain = initialize_agent(
     verbose=True,
 )
 
-
-def chatbot(prompt):
-    response = agent_chain.run(input=prompt)
-    return response
-
-gr.Interface(
-    fn=chatbot,
-    inputs=gr.Textbox(),
-    outputs="text",
-    title="Chatbot",
-    description="Ask any question and get an AI-generated response.",
-).launch()
+while True:
+    user_input = input("\nQuestion: ")
+    if user_input.lower() == "quit":
+        break
+    response = agent_chain.run(input=user_input)
+    print("AI:", response)
