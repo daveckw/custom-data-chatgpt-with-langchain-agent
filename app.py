@@ -16,6 +16,7 @@ from llama_index import (
     PromptHelper,
     ServiceContext,
 )
+from llama_index.optimization.optimizer import SentenceEmbeddingOptimizer
 
 logging.basicConfig(stream=sys.stdout, level=logging.INFO)
 logging.getLogger().addHandler(logging.StreamHandler(stream=sys.stdout))
@@ -50,10 +51,14 @@ index = GPTSimpleVectorIndex.load_from_disk(
     "index.json", service_context=service_context
 )
 
+# Optimiser reduced time and token usage
+# Tools for langchain agent
 tools = [
     Tool(
-        name="GPT Index",
-        func=lambda q: str(index.query(q)),
+        name="Custom GPT Index",
+        func=lambda q: str(
+            index.query(q, optimizer=SentenceEmbeddingOptimizer(percentile_cutoff=0.5))
+        ),
         description="useful for when you want to answer questions about projects and information from the documents. Input to this should be tell me about or summarise something",
         return_direct=True,  # return the direct response (observation) from the tool
     ),
